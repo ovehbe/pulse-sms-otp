@@ -73,7 +73,7 @@
     button.className = 'pulse-otp-copy-btn';
     button.setAttribute('aria-label', `Copy OTP: ${otp}`);
     button.innerHTML = `
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
       </svg>
@@ -90,7 +90,7 @@
         // Show success feedback
         button.classList.add('pulse-otp-copied');
         button.innerHTML = `
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
         `;
@@ -99,7 +99,7 @@
         setTimeout(() => {
           button.classList.remove('pulse-otp-copied');
           button.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
@@ -108,18 +108,14 @@
       }
     });
 
-    // Find the right place to insert the button
-    // Looking at the screenshot, rows have: checkbox | avatar | content | timestamp
-    // We want to add the button at the far right
-    
-    // Try to find timestamp or the rightmost element
-    const timestamp = row.querySelector('[class*="time"], [class*="timestamp"], .timestamp');
-    if (timestamp) {
-      timestamp.parentElement.insertBefore(button, timestamp.nextSibling);
-    } else {
-      // Fallback: append to the row
-      row.appendChild(button);
+    // Ensure the row has relative positioning for absolute button placement
+    const computedStyle = window.getComputedStyle(row);
+    if (computedStyle.position === 'static') {
+      row.style.position = 'relative';
     }
+
+    // Append button directly to the row (it will be positioned absolutely at far right)
+    row.appendChild(button);
   }
 
   // Process a conversation row

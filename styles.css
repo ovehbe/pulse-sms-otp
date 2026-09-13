@@ -1,51 +1,66 @@
 /* Pulse SMS OTP Copy Button Styles */
 
 .pulse-otp-copy-btn {
-  /* Circular button */
-  width: 36px;
-  height: 36px;
+  /* Circular button - similar size to avatar */
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   
-  /* Positioning */
-  display: inline-flex;
+  /* Absolute positioning at far right, vertically centered */
+  position: absolute !important;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  /* Flexbox for centering icon */
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  margin-left: 8px;
   flex-shrink: 0;
   
   /* Styling to match Pulse SMS dark theme */
-  background-color: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   transition: all 0.2s ease;
   
-  /* Ensure it's clickable */
-  z-index: 10;
-  position: relative;
+  /* Ensure it's clickable above other elements */
+  z-index: 100;
+  
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .pulse-otp-copy-btn:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.9);
-  transform: scale(1.05);
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.85);
+  transform: translateY(-50%) scale(1.05);
 }
 
 .pulse-otp-copy-btn:active {
-  transform: scale(0.95);
+  transform: translateY(-50%) scale(0.95);
 }
 
 .pulse-otp-copy-btn.pulse-otp-copied {
-  background-color: rgba(76, 175, 80, 0.3);
-  color: #4caf50;
+  background-color: rgba(76, 175, 80, 0.25);
+  border-color: rgba(76, 175, 80, 0.4);
+  color: #66bb6a;
 }
 
 .pulse-otp-copy-btn svg {
   display: block;
+  pointer-events: none;
 }
 
-/* Ensure button doesn't break row layout */
 .pulse-otp-copy-btn:focus {
   outline: 2px solid rgba(255, 255, 255, 0.3);
   outline-offset: 2px;
+}
+
+/* Ensure enough padding on the right side of conversation rows for the button */
+[data-pulse-otp-processed="true"] {
+  padding-right: 64px !important;
 }
