@@ -91,7 +91,7 @@
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 2;
+  z-index: 99;
 }
 
 .pulse-otp-copy-btn--abs:active {
