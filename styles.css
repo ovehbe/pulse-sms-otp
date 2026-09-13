@@ -1,0 +1,51 @@
+/* Pulse SMS OTP Copy Button Styles */
+
+.pulse-otp-copy-btn {
+  /* Circular button */
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  
+  /* Positioning */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  flex-shrink: 0;
+  
+  /* Styling to match Pulse SMS dark theme */
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  /* Ensure it's clickable */
+  z-index: 10;
+  position: relative;
+}
+
+.pulse-otp-copy-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.05);
+}
+
+.pulse-otp-copy-btn:active {
+  transform: scale(0.95);
+}
+
+.pulse-otp-copy-btn.pulse-otp-copied {
+  background-color: rgba(76, 175, 80, 0.3);
+  color: #4caf50;
+}
+
+.pulse-otp-copy-btn svg {
+  display: block;
+}
+
+/* Ensure button doesn't break row layout */
+.pulse-otp-copy-btn:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.3);
+  outline-offset: 2px;
+}
