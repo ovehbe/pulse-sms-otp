@@ -18,7 +18,7 @@
         "https://home.pulsesms.app/*",
         "https://*.pulsesms.app/*"
       ],
-      "js": ["content.js"],
+      "js": ["otp.js", "content.js"],
       "css": ["styles.css"],
       "run_at": "document_idle"
     }

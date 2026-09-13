@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pulse SMS OTP - layout fixture</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  /*
+   * Mirrors the Pulse SMS conversation list closely enough to exercise the
+   * injection logic, including the nested wrappers that previously produced two
+   * buttons per row: `.conversation-item` (the real row) wraps
+   * `.conversation-content`, which is itself a column flex container.
+   */
+  :root { color-scheme: dark; }
+
+  body {
+    margin: 0;
+    background: #1e1e1e;
+    font-family: Roboto, Arial, sans-serif;
+    color: #fff;
+  }
+
+  .conversation-list {
+    max-width: 820px;
+    margin: 24px auto;
+    background: #262626;
+    border-radius: 4px;
+    list-style: none;
+    padding: 8px 0;
+  }
+
+  .conversation-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 16px;
+    cursor: pointer;
+  }
+
+  .conversation-item:hover { background: rgba(255, 255, 255, 0.04); }
+
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex: 0 0 56px;
+  }
+
+  .conversation-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .conversation-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .title { font-size: 17px; }
+  .date { font-size: 13px; color: rgba(255, 255, 255, 0.75); margin-left: auto; }
+
+  .snippet {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.62);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
+</head>
+<body>
+<ul class="conversation-list">
+  <li class="conversation-item">
+    <input type="checkbox">
+    <div class="avatar" style="background:#2b7de9">V</div>
+    <div class="conversation-content">
+      <div class="conversation-header"><span class="title">VARIO</span><span class="date">Fri 3:29 PM</span></div>
+      <div class="snippet">Yeni bir iade talebi gelmiştir; Müşteri: Kubilay özbektaş TCKN: 4051093660</div>
+    </div>
+  </li>
+
+  <li class="conversation-item">
+    <input type="checkbox">
+    <div class="avatar" style="background:#e91e63">V</div>
+    <div class="conversation-content">
+      <div class="conversation-header"><span class="title">VARIODETECT</span><span class="date">Apr 3, 1:42 AM</span></div>
+      <div class="snippet">Meta status update Campaign "Kutu Açılım / Reels ? Soğuk / Potansiyel" is now active</div>
+    </div>
+  </li>
+
+  <li class="conversation-item">
+    <input type="checkbox">
+    <div class="avatar" style="background:#66bb6a">A</div>
+    <div class="conversation-content">
+      <div class="conversation-header"><span class="title">AKBANK</span><span class="date">1:53 AM</span></div>
+      <div class="snippet">Degerli Akbankli, 1881 ile biten banka kartinizla 14/09/2026 saat 01:53 5,00 TL islem</div>
+    </div>
+  </li>
+
+  <li class="conversation-item">
+    <input type="checkbox">
+    <div class="avatar" style="background:#f5222d">M</div>
+    <div class="conversation-content">
+      <div class="conversation-header"><span class="title">MIGROS</span><span class="date">1:33 AM</span></div>
+      <div class="snippet">041495 dogrulama kodu ile islem yapabilirsiniz. Migros Sanal Market Mersis</div>
+    </div>
+  </li>
+
+  <li class="conversation-item">
+    <input type="checkbox">
+    <div class="avatar" style="background:#fa8c16">T</div>
+    <div class="conversation-content">
+      <div class="conversation-header"><span class="title">TRENDYOL GO</span><span class="date">1:32 AM</span></div>
+      <div class="snippet">Trendyol Go 2 adımlı doğrulama ile giriş yapmak için onay kodunuz 007282</div>
+    </div>
+  </li>
+
+  <li class="conversation-item">
+    <input type="checkbox">
+    <div class="avatar" style="background:#9e9e9e">A</div>
+    <div class="conversation-content">
+      <div class="conversation-header"><span class="title">Amazon</span><span class="date">1:30 AM</span></div>
+      <div class="snippet">Amazon tek seferlik şifreniz: 881793 Bunu hiç kimse ile paylaşmayın</div>
+    </div>
+  </li>
+
+  <li class="conversation-item">
+    <input type="checkbox">
+    <div class="avatar" style="background:#8e24aa">K</div>
+    <div class="conversation-content">
+      <div class="conversation-header"><span class="title">KOLAYGELSIN</span><span class="date">Sun 8:14 PM</span></div>
+      <div class="snippet">-   -</div>
+    </div>
+  </li>
+</ul>
+
+<script src="../otp.js"></script>
+<script src="../content.js"></script>
+</body>
+</html>

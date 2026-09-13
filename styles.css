@@ -1,66 +1,99 @@
-/* Pulse SMS OTP Copy Button Styles */
+/* Pulse SMS OTP Copy - trailing copy button */
 
 .pulse-otp-copy-btn {
-  /* Circular button - similar size to avatar */
+  /* Circular, close to the contact avatar's size. */
+  box-sizing: border-box;
   width: 40px;
   height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0;
   border-radius: 50%;
-  
-  /* Absolute positioning at far right, vertically centered */
-  position: absolute !important;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  
-  /* Flexbox for centering icon */
-  display: flex !important;
+
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  
-  /* Styling to match Pulse SMS dark theme */
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.6);
+
+  /* Resist framework button resets. */
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  font: inherit;
+  line-height: 0;
+
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.62);
   cursor: pointer;
-  transition: all 0.2s ease;
-  
-  /* Ensure it's clickable above other elements */
-  z-index: 100;
-  
-  /* Prevent text selection */
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease, transform 0.15s ease;
+
   user-select: none;
   -webkit-user-select: none;
 }
 
-.pulse-otp-copy-btn:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.85);
-  transform: translateY(-50%) scale(1.05);
-}
-
-.pulse-otp-copy-btn:active {
-  transform: translateY(-50%) scale(0.95);
-}
-
-.pulse-otp-copy-btn.pulse-otp-copied {
-  background-color: rgba(76, 175, 80, 0.25);
-  border-color: rgba(76, 175, 80, 0.4);
-  color: #66bb6a;
-}
-
 .pulse-otp-copy-btn svg {
+  width: 18px;
+  height: 18px;
   display: block;
   pointer-events: none;
 }
 
-.pulse-otp-copy-btn:focus {
-  outline: 2px solid rgba(255, 255, 255, 0.3);
+.pulse-otp-copy-btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.24);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.pulse-otp-copy-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.35);
   outline-offset: 2px;
 }
 
-/* Ensure enough padding on the right side of conversation rows for the button */
-[data-pulse-otp-processed="true"] {
-  padding-right: 64px !important;
+.pulse-otp-copy-btn.is-copied {
+  background-color: rgba(76, 175, 80, 0.22);
+  border-color: rgba(76, 175, 80, 0.45);
+  color: #6ec071;
+}
+
+.pulse-otp-copy-btn.is-failed {
+  background-color: rgba(244, 67, 54, 0.2);
+  border-color: rgba(244, 67, 54, 0.45);
+  color: #ef7c72;
+}
+
+/*
+ * Horizontal flex rows: the button becomes the last flex child and claims its
+ * own 40px track, so the preview text shrinks instead of being covered.
+ */
+.pulse-otp-copy-btn--flex {
+  flex: 0 0 40px;
+  align-self: center;
+  order: 999;
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.pulse-otp-copy-btn--flex:active {
+  transform: scale(0.94);
+}
+
+/*
+ * Non-flex (or column) rows: pin the button to the trailing edge and reserve
+ * the same width as padding on the row so text never runs underneath it.
+ */
+.pulse-otp-row--abs {
+  padding-right: 60px !important;
+}
+
+.pulse-otp-copy-btn--abs {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.pulse-otp-copy-btn--abs:active {
+  transform: translateY(-50%) scale(0.94);
 }
