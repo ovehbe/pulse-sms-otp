@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pulse SMS OTP Helper - Settings</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 40px;
+    }
+    
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+    
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+    
+    .setting-group {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    
+    .setting-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    
+    .setting-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .toggle-switch {
+      position: relative;
+      width: 56px;
+      height: 28px;
+    }
+    
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.3s;
+      border-radius: 28px;
+    }
+    
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+    
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    
+    input:checked + .slider:before {
+      transform: translateX(28px);
+    }
+    
+    .setting-description {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    .status-message {
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .status-message.show {
+      opacity: 1;
+    }
+    
+    .status-message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid #2196F3;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    
+    .info-box h3 {
+      color: #1976D2;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    
+    .info-box p {
+      color: #555;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    
+    .info-box ul {
+      margin-left: 20px;
+      color: #555;
+      font-size: 14px;
+    }
+    
+    .info-box li {
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔑 Pulse SMS OTP Helper</h1>
+    <p class="subtitle">Automatically detect and copy OTP codes from your messages</p>
+    
+    <div class="setting-group">
+      <div class="setting-header">
+        <div class="setting-title">
+          <span>⚡</span>
+          <span>Auto-Copy OTP Codes</span>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="autocopy-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <p class="setting-description">
+        When enabled, OTP codes will be automatically copied to your clipboard as soon as they're detected in your messages. You'll see a confirmation on the copy button.
+      </p>
+    </div>
+    
+    <div class="status-message" id="status-message"></div>
+    
+    <div class="info-box">
+      <h3>ℹ️ How It Works</h3>
+      <p><strong>On the Pulse SMS conversations page:</strong></p>
+      <ul>
+        <li>The extension scans message previews for OTP codes (4-8 digits)</li>
+        <li>A blue "Copy OTP" button appears in the page header</li>
+        <li>Click the button to copy the detected code anytime</li>
+        <li>With auto-copy enabled, codes are copied immediately when detected</li>
+      </ul>
+      <p style="margin-top: 12px;">
+        <strong>Tip:</strong> You don't need to open individual conversations — the extension reads codes directly from the conversation list!
+      </p>
+    </div>
+  </div>
+  
+  <script src="options.js"></script>
+</body>
+</html>
