@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <circle cx="64" cy="64" r="60" fill="#4285f4"/>
+  <rect x="35" y="45" width="40" height="45" rx="4" fill="white" stroke="white" stroke-width="3"/>
+  <path d="M50 38 L50 48 L38 48 C33 48 30 51 30 56 L30 88 C30 93 33 96 38 96 L70 96 C75 96 78 93 78 88 L78 86" fill="none" stroke="white" stroke-width="3"/>
+  <text x="50" y="72" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#4285f4" text-anchor="middle">OTP</text>
+</svg>
