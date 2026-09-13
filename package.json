@@ -1,0 +1,10 @@
+{
+  "name": "pulse-sms-otp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chrome extension that adds per-conversation OTP copy buttons to Pulse SMS",
+  "scripts": {
+    "test": "node test/otp.test.js"
+  },
+  "license": "MIT"
+}

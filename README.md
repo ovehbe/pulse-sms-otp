@@ -16,11 +16,18 @@ The extension detects OTP codes from SMS messages in both Turkish and English, i
 - Turkish: "dogrulama kodu", "onay kodunuz", "şifreniz"
 - English: "verification code", "OTP", "passcode"
 
+A code is only recognised when one of these keywords appears within 40
+characters of the digits, in either direction. That keeps ordinary messages from
+growing a button: a bank alert like "1881 ile biten banka kartinizla" or a
+tracking number has no keyword, so no button appears. Dates, clock times, money
+amounts, and digit runs outside 4-8 characters are rejected as well.
+
 ### Examples from Screenshot
 
 - **MIGROS**: "041495 dogrulama kodu ile islem yapabilirsiniz..." → `041495`
 - **TRENDYOL GO**: "...onay kodunuz 007282..." → `007282`  
 - **Amazon**: "Amazon tek seferlik şifreniz: 881793..." → `881793`
+- **AKBANK**: "Degerli Akbankli, 1881 ile biten banka kartinizla..." → no button
 
 ## Installation
 
@@ -63,9 +70,35 @@ Since this extension is not published to the Chrome Web Store, you'll need to lo
 
 The extension consists of:
 - `manifest.json` - Extension configuration
-- `content.js` - Main logic for OTP detection and button injection
+- `otp.js` - Code detection, shared with the test suite
+- `content.js` - Row lookup and button injection
 - `styles.css` - Button styling to match Pulse SMS dark theme
 - `icons/` - Extension icons
+
+### How the button is placed
+
+Conversation rows are found by geometry rather than by class name: an element
+qualifies when it is roughly avatar-height and full-width, which excludes both
+the scrolling list container and the individual text nodes inside a row. Nested
+matches are then reduced to the outermost element, so a row and its inner
+content wrapper cannot each receive a button.
+
+Placement depends on the row's own layout. On a horizontal flex row the button
+is appended as the last flex child with `margin-left: auto`, claiming its own
+40px track so the preview text shrinks rather than being covered. Otherwise the
+button is positioned absolutely against the row with matching `padding-right`
+reserved, which produces the same gutter without relying on flex.
+
+### Tests
+
+```bash
+npm test        # or: node test/otp.test.js
+```
+
+`test/otp.test.js` covers the previews from the screenshots, including the ones
+that must *not* produce a button. `test/fixture.html` reproduces the Pulse SMS
+row markup - nested wrappers and a column-direction inner flex container - and
+can be opened directly in a browser to check placement without signing in.
 
 ## Privacy
 
